@@ -23,7 +23,8 @@ public class Main {
 		Date d4 = new Date(2022 - 1900, Month.NOVEMBER, 7, 9, 17);
 		Date d5 = new Date(2022 - 1900, Month.NOVEMBER, 28, 14, 11);
 
-			
+		Depo allTrains = new Depo();
+
 		Train t1 = new Train(11, "Berlin", d1);
 		Train t2 = new Train(2, "Paris", d2);
 		Train t3 = new Train(4, "Praga", d3);
@@ -34,9 +35,7 @@ public class Main {
 		Train t8 = new Train(18, "Praga", d5);
 		Train t9 = new Train(1, "Rome", d2);
 		Train t10 = new Train(5, "Warsaw", d3);
-		
-		Depo allTrains = new Depo();
-		
+
 		allTrains.addTrains(t1);
 		allTrains.addTrains(t2);
 		allTrains.addTrains(t3);
@@ -47,16 +46,23 @@ public class Main {
 		allTrains.addTrains(t8);
 		allTrains.addTrains(t9);
 		allTrains.addTrains(t10);
-		
+
 		DepoLogic logic = new DepoLogic();
 		DepoView view = new DepoView();
-		
-			logic.sortByNumber(allTrains);
-			logic.sortByDestinationAndTime(allTrains);
-			
-			
-			
-		}
-		
-		
+
+		view.printDepo(allTrains);
+
+		view.printTrain(logic.findTrain(11, allTrains));
+
+		view.printTrain(logic.findTrainByDest("Rome", allTrains));
+
+		logic.sortByNumber(allTrains);
+
+		view.printDepo(allTrains);
+
+		logic.sortByDestinationAndTime(allTrains);
+		view.printDepo(allTrains);
+
+	}
+
 }
