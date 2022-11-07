@@ -10,24 +10,35 @@ import com.tc.train.bean.Train;
 
 public class DepoLogic {
 
-	public List<Train> sortByNumber(Depo allTrains) {
+	public Train findTrain(int number, Depo d) {
 
+		for (Train tr : d.getAllTrains()) {
+
+			if (number == tr.getTrainNumber()) {
+				return tr;
+			}
+
+		}
 		return null;
+
 	}
 
-	public List<Train> sortByDestinationAndTime(Depo allTrains) {
+	public Train findTrainByDest(String dest, Depo d) {
 
+		for (Train tr : d.getAllTrains()) {
+
+			if (dest == tr.getDestination()) {
+				return tr;
+			}
+
+		}
 		return null;
+
 	}
 
-	public Train findTrain(int number, Depo allTrains) {
+	public void sortByNumber(Depo dep) {
 
-		return null;
-	}
-
-	public void sortByNumber(List<Train> allTrains) {
-
-		Collections.sort(allTrains, new Comparator<Train>() {
+		Collections.sort(dep.getAllTrains(), new Comparator<Train>() {
 			@Override
 			public int compare(Train tr1, Train tr2) {
 
@@ -37,9 +48,9 @@ public class DepoLogic {
 		});
 	}
 
-	public void sortByDestinationAndTime(List<Train> allTrains) {
+	public void sortByDestinationAndTime(Depo dep) {
 
-		Collections.sort(allTrains, new Comparator<Train>() {
+		Collections.sort(dep.getAllTrains(), new Comparator<Train>() {
 			@Override
 			public int compare(Train tr1, Train tr2) {
 				if (tr1.getDestination() == tr2.getDestination()) {
@@ -53,5 +64,13 @@ public class DepoLogic {
 			}
 
 		});
+
 	}
+
+	@Override
+	public String toString() {
+		return "DepoLogic [getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+
 }
